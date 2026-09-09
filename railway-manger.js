@@ -95,9 +95,33 @@ function annulerticket(){
     if (!trouv){
     console.log("Ticket introuvable.");}
 }
+function rechercherticket(){
+let nompassger= prompt(" entre le nom de passager");
+let trouv= false;
+for ( let ticket of tickets){
+    if ( ticket.passengerName===nompassger){
+        trouv= true;
+     console.log("=== TICKET of the name ===");
+            console.log(`Ticket #${ticket.id}`);
+            console.log(`Passager : ${ticket.passengerName}`);
+            console.log(`Place : ${ticket.seatNumber}`);
+            console.log(`Prix : ${ticket.price} DH`);
+            console.log("-------------------");
+    }
+}
+if (!trouv){
+    console.log(" le nom pas trouve")}
+
+}
+
+
+
+
+
 acheterticket();
 affichertickets();
-annulerticket()
+annulerticket();
+rechercherticket();
 
     
     
