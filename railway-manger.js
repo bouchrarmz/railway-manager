@@ -96,7 +96,7 @@ function annulerticket(){
     console.log("Ticket introuvable.");}
 }
 function rechercherticket(){
-let nompassger= prompt(" entre le nom de passager");
+let nompassger= prompt(" entre le nom de passager :");
 let trouv= false;
 for ( let ticket of tickets){
     if ( ticket.passengerName===nompassger){
@@ -114,14 +114,28 @@ if (!trouv){
 
 }
 
+ function filtrertrajets(){
+let villdepart= prompt( " ville de depart :")
+for ( let  trajet of  trips){
+   if ( trips.filter(  trajet=> trips.departure ===villdepart )){
+    console.log(`${ villdepart} ->${ trajet.destination } : ${ trajet.price } DH`)
 
+
+   }
+}
+
+
+
+ }
 
 
 
 acheterticket();
 affichertickets();
-annulerticket();
+
+
 rechercherticket();
+filtrertrajets()
 
     
     
