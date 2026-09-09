@@ -127,15 +127,24 @@ for ( let  trajet of  trips){
 
 
  }
+ function Triertrajets(){
+    console.log("------- traje trier--------")
+let resulta=[...trips]
+resulta.sort((a,b)=>a.price - b.price )
+     for ( let  trajet of resulta){
+        
+        console.log(` ${trajet.departure} -> ${ trajet.destination} : ${ trajet.price} DH` );
+
+
+     }
+
+ }
 
 
 
-acheterticket();
-affichertickets();
 
+Triertrajets();
 
-rechercherticket();
-filtrertrajets()
 
     
     
