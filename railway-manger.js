@@ -191,8 +191,17 @@ for ( let  trajet of  trips){
  function Triertrajets(){
     console.log("------- traje trier--------")
 let resulta=[...trips]
-resulta.sort((a,b)=>a.price - b.price )
-     for ( let  trajet of resulta){
+     for(  let i=0 ; i< resulta.length -1 -i ; i++ ){
+     for ( let j=0 ; j< resulta.length -1 -i ; j++ ){
+    if ( resulta[j].price< resulta[j+1].price){
+let temp=resulta[j]
+resulta[j]=resulta[j+1]
+resulta[j+1]=temp
+    }
+    }
+     }
+
+     for ( trajet of resulta){
         
         console.log(` ${trajet.departure} -> ${ trajet.destination} : ${ trajet.price} DH` );
 
