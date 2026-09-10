@@ -15,8 +15,9 @@ console.log("4. Annuler un ticket");
 console.log("5. Rechercher un ticket");
 console.log("6. Filtrer les trajets");
 console.log("7. Trier les trajets");
-console.log("8. Nombre total de tickets vendus   ")
-console.log("9. Chiffre d'affaires total :  ")
+console.log("8. Nombre total de tickets vendus   ");
+console.log("9. Chiffre d'affaires total :  ");
+console.log("10. Trajet le plus vendu  :  ")
 console.log("0. Quitter");
 choix = (   Number(prompt("Votre choix :" )));
 
@@ -50,7 +51,9 @@ switch(choix) {
    case 9:
     ChiffredaffairestotaL()
       break;    
-
+  case 10:
+   Trajetplusvendu()
+      break;
  case 0:
     console.log(" byyyy")
      break;
@@ -214,12 +217,34 @@ console.log(` Chiffre d'affaires total : ${sum}`);
 
 
   }
-function Trajetplusvendu
+
+function Trajetplusvendu(){
+let max=0;
+let trajetPlusVendu;
+ for ( let trajet of trips ){
+let coupteur=0;
+    for (  let ticket of tickets){
+        if (trajet.id ===ticket.tripId){
+           coupteur++
+        }
+ }
+
+  if (coupteur>max ){
+    max=coupteur;
+ trajetPlusVendu= trajet;}
+  }
+    console.log("Trajet le plus vendu :");
+    console.log(
+        `${trajetPlusVendu.departure} → ${trajetPlusVendu.destination}`
+    );
+    console.log(`${max} tickets vendus`);
+
+}
 
 
 
- acheterTicket()
 
+  aficherMenuPrincipal()
 
 
 
