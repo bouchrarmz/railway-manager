@@ -1,6 +1,57 @@
 
 const trips = require("./data");
 const prompt = require("prompt-sync")();
+function aficherMenuPrincipal(){
+
+let choix;
+do{
+console.log("=================================");
+console.log("RAILWAY MANAGER");
+console.log("=================================");
+console.log("1. Afficher les trajets");
+console.log("2. Acheter un ticket");
+console.log("3. Afficher les tickets");
+console.log("4. Annuler un ticket");
+console.log("5. Rechercher un ticket");
+console.log("6. Filtrer les trajets");
+console.log("7. Trier les trajets");
+console.log("0. Quitter");
+choix = (   Number(prompt("Votre choix :" )));
+
+switch(choix) {
+  case 1:
+     affichertrajets();
+     break;
+  case 2:
+      acheterTicket();
+      affichertickets();
+     break;
+  case 3:
+    affichertickets();
+     break;
+  case 4:
+      annulerticket();
+     break;
+  case 5:
+      rechercherticket();
+     break;
+  case 6:
+      filtrertrajets();
+     break;   
+
+ case 7:
+     Triertrajets();
+     break;
+ case 0:
+    console.log(" m3a salama")
+     break;
+ default:
+         console.log("Choix invalide.");
+}
+    
+} while (choix !== 0);
+}
+
 function affichertrajets(){
     console.log("=== TRAJETS DISPONIBLES ===");
     for ( let trip of trips ){
@@ -15,9 +66,8 @@ console.log("---------------------------");
 
 }
 }
-affichertrajets();
 let tickets=[];
-  function acheterticket(){
+  function acheterTicket(){
 let nompassger=   prompt("Nom du passager :")
  let idtrajet=  Number(prompt("Identifiant du trajet : "))
   let trajetrouv= false
@@ -27,7 +77,6 @@ let nompassger=   prompt("Nom du passager :")
     
     if(trajet.availableSeats>0 ){
     
-
      let ticket ={
     id :tickets.length +1,
      passengerName: nompassger,
@@ -56,8 +105,9 @@ let nompassger=   prompt("Nom du passager :")
 }
 
 function affichertickets(){
-    
+    console.log("hihihi",tickets)
     for ( let ticket of tickets ){
+        console.log("hihihi")
         let trajet = trips.find(function(trip) {
             return trip.id === ticket.tripId;
              });
@@ -139,11 +189,14 @@ resulta.sort((a,b)=>a.price - b.price )
      }
 
  }
+ aficherMenuPrincipal();
 
 
 
 
-Triertrajets();
+
+
+
 
 
     
