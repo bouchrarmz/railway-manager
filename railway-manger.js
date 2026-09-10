@@ -15,6 +15,8 @@ console.log("4. Annuler un ticket");
 console.log("5. Rechercher un ticket");
 console.log("6. Filtrer les trajets");
 console.log("7. Trier les trajets");
+console.log("8. Nombre total de tickets vendus   ")
+console.log("9. Chiffre d'affaires total :  ")
 console.log("0. Quitter");
 choix = (   Number(prompt("Votre choix :" )));
 
@@ -42,8 +44,15 @@ switch(choix) {
  case 7:
      Triertrajets();
      break;
+ case 8:
+    Nbrtotalticketsvendus()
+      break;
+   case 9:
+    ChiffredaffairestotaL()
+      break;    
+
  case 0:
-    console.log(" m3a salama")
+    console.log(" byyyy")
      break;
  default:
          console.log("Choix invalide.");
@@ -105,9 +114,8 @@ let nompassger=   prompt("Nom du passager :")
 }
 
 function affichertickets(){
-    console.log("hihihi",tickets)
+    
     for ( let ticket of tickets ){
-        console.log("hihihi")
         let trajet = trips.find(function(trip) {
             return trip.id === ticket.tripId;
              });
@@ -189,7 +197,31 @@ resulta.sort((a,b)=>a.price - b.price )
      }
 
  }
- aficherMenuPrincipal();
+ function Nbrtotalticketsvendus(){
+
+     console.log(`Nombre de tickets : ${tickets.length}`);
+
+
+ }
+  function ChiffredaffairestotaL(){
+let sum=0;
+for ( let ticket of tickets)
+    sum+=ticket.price;
+console.log(` Chiffre d'affaires total : ${sum}`);
+
+
+
+
+
+  }
+function Trajetplusvendu
+
+
+
+ acheterTicket()
+
+
+
 
 
 
