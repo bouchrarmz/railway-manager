@@ -16,8 +16,8 @@ console.log("5. Rechercher un ticket");
 console.log("6. Filtrer les trajets");
 console.log("7. Trier les trajets");
 console.log("8. Nombre total de tickets vendus   ");
-console.log("9. Chiffre d'affaires total :  ");
-console.log("10. Trajet le plus vendu  :  ")
+console.log("9. Chiffre d'affaires total  ");
+console.log("10. Trajet le plus vendu   ")
 console.log("0. Quitter");
 choix = (   Number(prompt("Votre choix :" )));
 
@@ -65,9 +65,11 @@ switch(choix) {
 }
 
 function affichertrajets(){
+    let trajitrouv= false
     console.log("=== TRAJETS DISPONIBLES ===");
     for ( let trip of trips ){
         if ( trip.availableSeats>0) {
+            trajitrouv= true;
 console.log (`#${trip.id} ${trip.departure} -> ${trip.destination}` );
 console.log (`Dèpart:${trip.departureTime}` );
 console.log (`Arrivèe: ${trip.arrivalTime} ` );
@@ -75,6 +77,10 @@ console.log (`prix: ${trip.price} ` );
 console.log (`Places disponibles: ${trip.availableSeats} ` );
 console.log("---------------------------");
 }
+
+}
+if ( !trajitrouv){
+console.log('Aucun ticket enregistré.');
 
 }
 }
@@ -162,13 +168,19 @@ let trouv= false;
 for ( let ticket of tickets){
     if ( ticket.passengerName===nompassger){
         trouv= true;
+        for ( let trajet of trips){
+            if (trajet.id === ticket.tripId ){
+
      console.log("=== TICKET of the name ===");
             console.log(`Ticket #${ticket.id}`);
             console.log(`Passager : ${ticket.passengerName}`);
+            console.log(`Trajet :${trajet.departure} -> ${trajet.destination} t  `)
             console.log(`Place : ${ticket.seatNumber}`);
             console.log(`Prix : ${ticket.price} DH`);
             console.log("-------------------");
     }
+}
+}
 }
 if (!trouv){
     console.log(" le nom pas trouve")}
@@ -177,37 +189,44 @@ if (!trouv){
 
  function filtrertrajets(){
 let villdepart= prompt( " ville de depart :")
+
+
 for ( let  trajet of  trips){
-   if ( trips.filter(  trajet=> trips.departure ===villdepart )){
+
+   if ( trajet.departure.toLowerCase() ===villdepart.toLowerCase() ){
     console.log(`${ villdepart} ->${ trajet.destination } : ${ trajet.price } DH`)
-
-
    }
+   
 }
-
 
 
  }
  function Triertrajets(){
     console.log("------- traje trier--------")
 let resulta=[...trips]
-     for(  let i=0 ; i< resulta.length -1 -i ; i++ ){
+     for(  let i=0 ; i< resulta.length -1  ; i++ ){
+        let sorted= false;
      for ( let j=0 ; j< resulta.length -1 -i ; j++ ){
-    if ( resulta[j].price< resulta[j+1].price){
-let temp=resulta[j]
-resulta[j]=resulta[j+1]
-resulta[j+1]=temp
-    }
+    if ( resulta[j].price> resulta[j+1].price){
+        sorted= true;
+      let temp=resulta[j]
+       resulta[j]=resulta[j+1]
+        resulta[j+1]=temp
     }
      }
+     
+if (sorted === false) {
+    break;
 
-     for ( trajet of resulta){
+ }
+
+    }
+    
+
+ for (let  trajet of resulta){
         
         console.log(` ${trajet.departure} -> ${ trajet.destination} : ${ trajet.price} DH` );
-
-
-     }
-
+}
  }
  function Nbrtotalticketsvendus(){
 
@@ -221,42 +240,39 @@ for ( let ticket of tickets)
     sum+=ticket.price;
 console.log(` Chiffre d'affaires total : ${sum}`);
 
-
-
-
-
   }
 
 function Trajetplusvendu(){
 let max=0;
-let trajetPlusVendu;
- for ( let trajet of trips ){
-let coupteur=0;
-    for (  let ticket of tickets){
-        if (trajet.id ===ticket.tripId){
-           coupteur++
-        }
+ let trajeblusvendu;
+ for ( let trajet of trips){
+ let compt=0;
+ for ( let ticket of tickets){
+if (trajet.id === ticket.tripId ){
+    compt++;
+
  }
-
-  if (coupteur>max ){
-    max=coupteur;
- trajetPlusVendu= trajet;}
-  }
-    console.log("Trajet le plus vendu :");
-    console.log(
-        `${trajetPlusVendu.departure} → ${trajetPlusVendu.destination}`
-    );
-    console.log(`${max} tickets vendus`);
-
+ }
+if (compt>max ){
+    max=compt;
+     trajeblusvendu=trajet;
 }
 
 
 
+ }
+    
+console.log( "Trajet le plus vendu :");
+console.log( ` ${trajeblusvendu.departure}->${trajeblusvendu.destination} `);
+console.log(`${max}  tickets vendus`);
+
+
+}
 
   aficherMenuPrincipal()
 
 
-
+// POUR AFIICHER TOUT LES FUNCTION DE 
 
 
 
@@ -268,7 +284,6 @@ let coupteur=0;
     
     
         
-
 
 
 
