@@ -65,27 +65,50 @@ switch(choix) {
 }
 
 function affichertrajets(){
-    let trajitrouv= false
     console.log("=== TRAJETS DISPONIBLES ===");
     for ( let trip of trips ){
-        if ( trip.availableSeats>0) {
-            trajitrouv= true;
 console.log (`#${trip.id} ${trip.departure} -> ${trip.destination}` );
 console.log (`Dèpart:${trip.departureTime}` );
 console.log (`Arrivèe: ${trip.arrivalTime} ` );
 console.log (`prix: ${trip.price} ` );
 console.log (`Places disponibles: ${trip.availableSeats} ` );
 console.log("---------------------------");
-}
-
-}
-if ( !trajitrouv){
-console.log('Aucun ticket enregistré.');
 
 }
 }
-let tickets=[];
-let nextTicketId = 1;
+
+
+const tickets = [
+    {
+        id: 1,
+        passengerName: "Ahmed",
+        tripId: 3,
+        seatNumber: 1,
+        price: 90
+    },
+    {
+        id: 2,
+        passengerName: "Sara",
+        tripId: 1,
+        seatNumber: 1,
+        price: 25
+    },
+    {
+        id: 3,
+        passengerName: "Ahmed",
+        tripId: 4,
+        seatNumber: 2,
+        price: 120
+    },
+    {
+        id: 4,
+        passengerName: "Omar",
+        tripId: 3,
+        seatNumber: 2,
+        price: 90
+    }
+];
+let nextTicketId = 4;
 
 function acheterTicket(){
     let nompassger=   prompt("Nom du passager :");
@@ -165,17 +188,17 @@ function annulerticket(){
     console.log("Ticket introuvable.");}
 }
 function rechercherticket(){
+     console.log("=== TICKET of the name ===");
      let recherch=[];
      let nompassger= prompt(" entre le nom de passager :");
      let trouv= false;
         for ( let ticket of tickets){
-            if ( ticket.passengerName===nompassger){
+            if ( ticket.passengerName .toLowerCase()===nompassger.trim().toLowerCase()){
             trouv= true;
             recherch.push(ticket);
         for ( let trajet of trips){
             if (trajet.id === ticket.tripId ){
 
-     console.log("=== TICKET of the name ===");
             console.log(`Ticket #${ticket.id}`);
             console.log(`Passager : ${ticket.passengerName}`);
             console.log(`Trajet :${trajet.departure} -> ${trajet.destination} t  `)
@@ -193,7 +216,7 @@ if (!trouv){
 
 
  function filtrertrajets(){
-let villdepart= prompt( " ville de depart :")
+let villdepart= prompt( " ville de depart : ")
 for ( let  trajet of  trips){
    if ( trajet.departure.toLowerCase() ===villdepart.toLowerCase() ){
     console.log(`${ villdepart} ->${ trajet.destination } : ${ trajet.price } DH`)
@@ -254,7 +277,6 @@ let max=0;
  for ( let ticket of tickets){
 if (trajet.id === ticket.tripId ){
     compt++;
-
  }
  }
 if (compt>max ){
